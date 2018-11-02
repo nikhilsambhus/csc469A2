@@ -46,7 +46,7 @@ fill_deadbeef(void *vptr, size_t len)
 #define SIG_SB 's'
 #define SIG_BIG 'B'
 
-#define NUM_HEAPS 8
+#define NUM_HEAPS 16
 
 #define PAGE_SIZE  4096
 #if defined(__GNUC__)
@@ -58,7 +58,7 @@ fill_deadbeef(void *vptr, size_t len)
 #endif /* __GNUC__ */
 
 #define NSIZES 8
-static const size_t sizes[NSIZES] = {16, 32, 64, 128, 256, 512, 1024, 2048 };
+static const size_t sizes[NSIZES] = {16, 32, 64, 128, 256, 512, 1024, 2048};
 
 #define SMALLEST_SUBPAGE_SIZE 16
 #define LARGEST_SUBPAGE_SIZE 2048
@@ -98,12 +98,14 @@ struct heap {
 #define MKPAB(pa, blk)   (((pa)&PAGE_FRAME) | ((blk) & ~PAGE_FRAME))
 
 static struct pageref *fresh_refs; /* static global, initially 0 */
-static struct pageref *recycled_refs;
+static struct pageref *recycled_refs[NSIZES];
 static struct heap heaps[NUM_HEAPS];
 //static struct pageref *sizebases[NSIZES];
 static struct big_freelist *bigchunks;
 
-pthread_mutex_t big_lock;
+pthread_mutex_t sbrk_lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t gref_lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t bigalloc_lock = PTHREAD_MUTEX_INITIALIZER;
 
 #ifdef DEBUG
 # define DEBUG_PRINT(x) printf x
@@ -117,16 +119,19 @@ int getheapid() {
 
 static
 struct pageref *
-allocpageref(void)
+allocpageref(int blktype)
 {
 	struct pageref *ref;
 
 	/* Use a pageref that already has a page allocated,
 	 * if there are any.
 	 */
-	if (recycled_refs) {
-		ref = recycled_refs;
-		recycled_refs = recycled_refs->next;
+
+	pthread_mutex_lock(&gref_lock);
+	if (recycled_refs[blktype]) {
+		ref = recycled_refs[blktype];
+		recycled_refs[blktype] = recycled_refs[blktype]->next;
+		pthread_mutex_unlock(&gref_lock);
 		return ref;
 	}
 
@@ -134,6 +139,7 @@ allocpageref(void)
 	if (fresh_refs) {
 		ref = fresh_refs;
 		fresh_refs = fresh_refs->next;
+		pthread_mutex_unlock(&gref_lock);
 		return ref;
 	}
 
@@ -141,7 +147,9 @@ allocpageref(void)
 	 * getting a page with mem_sbrk()
 	 */
 
+	pthread_mutex_lock(&sbrk_lock);
 	ref = (struct pageref *)mem_sbrk(PAGE_SIZE);
+	pthread_mutex_unlock(&sbrk_lock);
 	if (ref) {
 		bzero(ref, PAGE_SIZE);
 		fresh_refs = ref+1;
@@ -154,16 +162,19 @@ allocpageref(void)
 		}
 		tmp->next = NULL;
 	}
+	pthread_mutex_unlock(&gref_lock);
 	return ref;
 
 }
 
 static
 void
-freepageref(struct pageref *p)
+freepageref(struct pageref *p, int blktype)
 {
-	p->next = recycled_refs;
-	recycled_refs = p;
+	pthread_mutex_lock(&gref_lock);
+	p->next = recycled_refs[blktype];
+	recycled_refs[blktype] = p;
+	pthread_mutex_unlock(&gref_lock);
 }
 
 
@@ -329,9 +340,7 @@ subpage_kmalloc(size_t sz)
 	 * No page of the right size available.
 	 * Make a new one.
 	 */
-	pthread_mutex_lock(&big_lock);
-	pr = allocpageref();
-	pthread_mutex_unlock(&big_lock);
+	pr = allocpageref(blktype);
 	if (pr==NULL) {
 		/* Couldn't allocate accounting space for the new page. */
 		printf("malloc: Subpage allocator couldn't get pageref\n"); 
@@ -339,16 +348,25 @@ subpage_kmalloc(size_t sz)
 	}
 
 	prpage = PR_PAGEADDR(pr);
-	if (prpage == 0) {
-		pthread_mutex_lock(&big_lock);
+	if (prpage == 0) { 
+		pthread_mutex_lock(&sbrk_lock);
 		prpage = (vaddr_t)mem_sbrk(PAGE_SIZE);
-		pthread_mutex_unlock(&big_lock);
+		pthread_mutex_unlock(&sbrk_lock);
 		if (prpage==0) {
 			/* Out of memory. */
-			freepageref(pr);
+			freepageref(pr, blktype);
 			printf("malloc: Subpage allocator couldn't get a page\n"); 
 			return NULL;
 		}
+	}
+	else {
+		//A recycled page
+		pr->heapid = heapid;
+		pr->next = heaps[heapid].sizebases[blktype];
+		heaps[heapid].sizebases[blktype] = pr;
+
+		/* This is kind of cheesy, but avoids duplicating the alloc code. */
+		goto doalloc;
 	}
 
 	pr->pageaddr_and_blocktype = MKPAB(prpage, blktype);
@@ -370,7 +388,7 @@ subpage_kmalloc(size_t sz)
 		assert(fl != fl->next);
 	}
 	pr->flist = fl;
-	assert((vaddr_t)pr->flist == prpage+(pr->nfree-1)*sizes[blktype]);
+	assert((vaddr_t)pr->flist == fla+(pr->nfree-1)*sizes[blktype]);
 
 	pr->next = heaps[heapid].sizebases[blktype];
 	heaps[heapid].sizebases[blktype] = pr;
@@ -464,12 +482,10 @@ subpage_kfree(void *ptr)
 	pr->nfree++;
 
 	assert(pr->nfree <= PAGE_SIZE / sizes[blktype]);
-	if (pr->nfree == PAGE_SIZE / sizes[blktype] - 1) {
+	if (pr->nfree == (PAGE_SIZE / sizes[blktype] - 1)) {
 		/* Whole page is free. */
 		remove_lists(pr, blktype, heapid);
-		pthread_mutex_lock(&big_lock);
-		freepageref(pr);
-		pthread_mutex_unlock(&big_lock);
+		freepageref(pr, blktype);
 	}
 
 	checksubpages();
@@ -522,7 +538,10 @@ static void *big_kmalloc(int sz)
 
 	if (result == NULL) {
 		/* Nothing suitable in freelist... grab space with mem_sbrk */
+
+		pthread_mutex_lock(&sbrk_lock);
 		struct big_freelist *hdr_ptr = (struct big_freelist *)mem_sbrk(npages*PAGE_SIZE);
+		pthread_mutex_unlock(&sbrk_lock);
 		if (hdr_ptr != NULL) {
 			hdr_ptr->signature = SIG_BIG;
 			hdr_ptr->npages = npages;
@@ -575,15 +594,15 @@ mm_malloc(size_t sz)
 	DEBUG_PRINT(("Entered mm malloc %d bytes\n", sz));
 
 	if (sz>=LARGEST_SUBPAGE_SIZE) {
-		pthread_mutex_lock(&big_lock);
+		pthread_mutex_lock(&bigalloc_lock);
 		result = big_kmalloc(sz);
-		pthread_mutex_unlock(&big_lock);
+		pthread_mutex_unlock(&bigalloc_lock);
 	} else {
 		result = subpage_kmalloc(sz);
 	}
 
 
-	//DEBUG_PRINT(("Return mm malloc %d\n", sz));
+	DEBUG_PRINT(("Return mm malloc %d\n", sz));
 	return result;
 }
 
@@ -598,9 +617,9 @@ mm_free(void *ptr)
 		return;
 	} else {
 	  if (subpage_kfree(ptr)) {
-		  pthread_mutex_lock(&big_lock);
+		  pthread_mutex_lock(&bigalloc_lock);
 		  big_kfree(ptr);
-		  pthread_mutex_unlock(&big_lock);
+		  pthread_mutex_unlock(&bigalloc_lock);
 	  }
 	}
 	DEBUG_PRINT(("Return mm free\n"));
