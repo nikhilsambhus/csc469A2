@@ -1,0 +1,6 @@
+
+Object size: 128, Iterations: 100000, Threads: 5
+Running on system with 6 processors.
+Starting test...
+Average execution time = 4.367128 seconds, standard deviation = 1.335664.
+Memory used = 58200063 bytes

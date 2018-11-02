@@ -1,0 +1,4 @@
+
+Running threadtest for 5 threads, 10000 iterations, 420 objects, 10 work and 1 size...
+Time elapsed = 0.776947 seconds
+Memory used = 33898495 bytes

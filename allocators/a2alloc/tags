@@ -1,0 +1,53 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+INVALID_OFFSET	./a2alloc.c	78;"	d	file:
+LARGEST_SUBPAGE_SIZE	./a2alloc.c	58;"	d	file:
+MKPAB	./a2alloc.c	82;"	d	file:
+NSIZES	./a2alloc.c	54;"	d	file:
+PAGE_FRAME	./a2alloc.c	48;"	d	file:
+PAGE_FRAME	./a2alloc.c	50;"	d	file:
+PAGE_SIZE	./a2alloc.c	45;"	d	file:
+PR_BLOCKTYPE	./a2alloc.c	81;"	d	file:
+PR_PAGEADDR	./a2alloc.c	80;"	d	file:
+SLOW	./a2alloc.c	146;"	d	file:
+SLOW	./a2alloc.c	41;"	d	file:
+SLOWER	./a2alloc.c	42;"	d	file:
+SMALLEST_SUBPAGE_SIZE	./a2alloc.c	57;"	d	file:
+allocpageref	./a2alloc.c	/^allocpageref(void)$/;"	f	file:
+big_freelist	./a2alloc.c	/^struct big_freelist {$/;"	s	file:
+big_kfree	./a2alloc.c	/^static void big_kfree(void *ptr)$/;"	f	file:
+big_kmalloc	./a2alloc.c	/^static void *big_kmalloc(int sz)$/;"	f	file:
+bigchunks	./a2alloc.c	/^static struct big_freelist *bigchunks;$/;"	v	typeref:struct:big_freelist	file:
+blocktype	./a2alloc.c	/^int blocktype(size_t sz)$/;"	f	file:
+checksubpage	./a2alloc.c	/^checksubpage(struct pageref *pr)$/;"	f	file:
+checksubpage	./a2alloc.c	178;"	d	file:
+checksubpages	./a2alloc.c	/^checksubpages(void)$/;"	f	file:
+checksubpages	./a2alloc.c	199;"	d	file:
+fill_deadbeef	./a2alloc.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
+flist	./a2alloc.c	/^	struct freelist *flist;$/;"	m	struct:pageref	typeref:struct:pageref::freelist	file:
+freelist	./a2alloc.c	/^struct freelist {$/;"	s	file:
+freepageref	./a2alloc.c	/^freepageref(struct pageref *p)$/;"	f	file:
+fresh_refs	./a2alloc.c	/^static struct pageref *fresh_refs; \/* static global, initially 0 *\/$/;"	v	typeref:struct:pageref	file:
+malloc_lock	./a2alloc.c	/^pthread_mutex_t malloc_lock = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+mm_free	./a2alloc.c	/^mm_free(void *ptr)$/;"	f
+mm_init	./a2alloc.c	/^int mm_init(void)$/;"	f
+mm_malloc	./a2alloc.c	/^mm_malloc(size_t sz)$/;"	f
+myname	./a2alloc.c	/^name_t myname = {$/;"	v
+next	./a2alloc.c	/^	struct big_freelist *next;$/;"	m	struct:big_freelist	typeref:struct:big_freelist::big_freelist	file:
+next	./a2alloc.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
+next	./a2alloc.c	/^	struct pageref *next;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
+nfree	./a2alloc.c	/^	int nfree;$/;"	m	struct:pageref	file:
+npages	./a2alloc.c	/^	int npages;$/;"	m	struct:big_freelist	file:
+pageaddr_and_blocktype	./a2alloc.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
+pageref	./a2alloc.c	/^struct pageref {$/;"	s	file:
+recycled_refs	./a2alloc.c	/^static struct pageref *recycled_refs;$/;"	v	typeref:struct:pageref	file:
+remove_lists	./a2alloc.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
+sizebases	./a2alloc.c	/^static struct pageref *sizebases[NSIZES];$/;"	v	typeref:struct:pageref	file:
+sizes	./a2alloc.c	/^static const size_t sizes[NSIZES] = { 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };$/;"	v	file:
+subpage_kfree	./a2alloc.c	/^subpage_kfree(void *ptr)$/;"	f	file:
+subpage_kmalloc	./a2alloc.c	/^subpage_kmalloc(size_t sz)$/;"	f	file:
+vaddr_t	./a2alloc.c	/^typedef ptrdiff_t vaddr_t;$/;"	t	file:
