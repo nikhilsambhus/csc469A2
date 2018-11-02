@@ -43,15 +43,11 @@ fill_deadbeef(void *vptr, size_t len)
 #undef SLOWER	/* lots of consistency checks */
 
 //#define DEBUG
-<<<<<<< HEAD
 #define SIG_SB 's'
 #define SIG_BIG 'B'
 
 #define NUM_HEAPS 8
 
-=======
-#define NUM_HEAPS 8
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 #define PAGE_SIZE  4096
 #if defined(__GNUC__)
 #if __LP64__
@@ -61,17 +57,10 @@ fill_deadbeef(void *vptr, size_t len)
 #endif /* __X86_64__ */
 #endif /* __GNUC__ */
 
-<<<<<<< HEAD
 #define NSIZES 8
 static const size_t sizes[NSIZES] = {16, 32, 64, 128, 256, 512, 1024, 2048 };
 
 #define SMALLEST_SUBPAGE_SIZE 16
-=======
-#define NSIZES 9
-static const size_t sizes[NSIZES] = { 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };
-
-#define SMALLEST_SUBPAGE_SIZE 8
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 #define LARGEST_SUBPAGE_SIZE 2048
 
 ////////////////////////////////////////
@@ -85,28 +74,19 @@ struct pageref {
 	struct freelist *flist;
 	vaddr_t pageaddr_and_blocktype;
 	int nfree;
-<<<<<<< HEAD
 	int heapid;
 };
 
 struct big_freelist {
 	char signature;
-=======
-};
-
-struct big_freelist {
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	int npages;
 	struct big_freelist *next;
 };
 
-<<<<<<< HEAD
 struct page_backref {
 	char signature;
 	struct pageref *pr;
 };
-=======
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 struct heap {
 	pthread_mutex_t lock;
 	struct pageref *sizebases[NSIZES];
@@ -372,7 +352,6 @@ subpage_kmalloc(size_t sz)
 	}
 
 	pr->pageaddr_and_blocktype = MKPAB(prpage, blktype);
-<<<<<<< HEAD
 	pr->nfree = (PAGE_SIZE / sizes[blktype]) - 1;
 	pr->heapid = heapid;
 	/* Store back pointer ref*/
@@ -383,13 +362,6 @@ subpage_kmalloc(size_t sz)
 	/* Build freelist */
 
 	fla = (vaddr_t)(char*)(prpage + sizes[blktype]);
-=======
-	pr->nfree = PAGE_SIZE / sizes[blktype];
-
-	/* Build freelist */
-
-	fla = prpage;
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	fl = (struct freelist *)fla;
 	fl->next = NULL;
 	for (i=1; i<pr->nfree; i++) {
@@ -417,18 +389,13 @@ subpage_kfree(void *ptr)
 	struct pageref *pr=NULL;// pageref for page we're freeing in
 	vaddr_t prpage;		// PR_PAGEADDR(pr)
 	vaddr_t offset;		// offset into page
-<<<<<<< HEAD
 	//int i, j;
 	int heapid;
-=======
-	int i, j;
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 
 	ptraddr = (vaddr_t)ptr;
 
 	checksubpages();
 
-<<<<<<< HEAD
 	struct page_backref *backref = (struct page_backref*)((long unsigned int)ptr & PAGE_FRAME);
 	if(backref->signature == SIG_BIG) {
 		return -1; //Not  here; present in global pages
@@ -440,10 +407,6 @@ subpage_kfree(void *ptr)
 	blktype = PR_BLOCKTYPE(pr);
 	/* Nasty search to find the page that this block came from */
 	/*int heapid = getheapid();
-=======
-	/* Nasty search to find the page that this block came from */
-	int heapid = getheapid();
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	//DEBUG_PRINT(("In subpage_free\n"));
 	for(j = heapid; j != heapid; j = (j + 1) % NUM_HEAPS) {
 		pthread_mutex_lock(&heaps[j].lock);
@@ -453,11 +416,7 @@ subpage_kfree(void *ptr)
 				prpage = PR_PAGEADDR(pr);
 				blktype = PR_BLOCKTYPE(pr);
 
-<<<<<<< HEAD
 				// check for corruption
-=======
-				/* check for corruption */
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 				assert(blktype>=0 && blktype<NSIZES);
 				checksubpage(pr);
 
@@ -476,17 +435,11 @@ subpage_kfree(void *ptr)
 	}
 
 	if (pr == NULL) {
-<<<<<<< HEAD
 		// Not on any of our pages - not a subpage allocation
 		return -1;
 	}*/
 
 	pthread_mutex_lock(&heaps[heapid].lock);
-=======
-		/* Not on any of our pages - not a subpage allocation */
-		return -1;
-	}
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 
 	offset = ptraddr - prpage;
 
@@ -511,15 +464,9 @@ subpage_kfree(void *ptr)
 	pr->nfree++;
 
 	assert(pr->nfree <= PAGE_SIZE / sizes[blktype]);
-<<<<<<< HEAD
 	if (pr->nfree == PAGE_SIZE / sizes[blktype] - 1) {
 		/* Whole page is free. */
 		remove_lists(pr, blktype, heapid);
-=======
-	if (pr->nfree == PAGE_SIZE / sizes[blktype]) {
-		/* Whole page is free. */
-		remove_lists(pr, blktype, j);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 		pthread_mutex_lock(&big_lock);
 		freepageref(pr);
 		pthread_mutex_unlock(&big_lock);
@@ -527,11 +474,7 @@ subpage_kfree(void *ptr)
 
 	checksubpages();
 
-<<<<<<< HEAD
 	pthread_mutex_unlock(&heaps[heapid].lock);
-=======
-	pthread_mutex_unlock(&heaps[j].lock);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	return 0;
 }
 
@@ -556,13 +499,8 @@ static void *big_kmalloc(int sz)
 		if (tmp->npages > npages) {
 			/* Carve the block in two pieces */
 			tmp->npages -= npages;
-<<<<<<< HEAD
 			struct big_freelist *hdr_ptr = (struct big_freelist *)((char *)tmp+(tmp->npages*PAGE_SIZE));
 			hdr_ptr->npages = npages;
-=======
-			int *hdr_ptr = (int *)((char *)tmp+(tmp->npages*PAGE_SIZE));
-			*hdr_ptr = npages;
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 			result = (void *)((char *)hdr_ptr + SMALLEST_SUBPAGE_SIZE);
 			break;
 		} else if (tmp->npages == npages) {
@@ -572,13 +510,8 @@ static void *big_kmalloc(int sz)
 			} else {
 				bigchunks = tmp->next;
 			}
-<<<<<<< HEAD
 			struct big_freelist *hdr_ptr = tmp;
 			assert(hdr_ptr->npages == npages);
-=======
-			int *hdr_ptr = (int *)tmp;
-			assert(*hdr_ptr == npages);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 			result = (void *)((char *)hdr_ptr + SMALLEST_SUBPAGE_SIZE);
 			break;
 		} else {
@@ -589,16 +522,10 @@ static void *big_kmalloc(int sz)
 
 	if (result == NULL) {
 		/* Nothing suitable in freelist... grab space with mem_sbrk */
-<<<<<<< HEAD
 		struct big_freelist *hdr_ptr = (struct big_freelist *)mem_sbrk(npages*PAGE_SIZE);
 		if (hdr_ptr != NULL) {
 			hdr_ptr->signature = SIG_BIG;
 			hdr_ptr->npages = npages;
-=======
-		int *hdr_ptr = (int *)mem_sbrk(npages*PAGE_SIZE);
-		if (hdr_ptr != NULL) {
-			*hdr_ptr = npages;
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 			result = (void *)((char *)hdr_ptr + SMALLEST_SUBPAGE_SIZE);
 		}
 	}
@@ -612,7 +539,6 @@ static void big_kfree(void *ptr)
 	 * for small objects are likely to prevent big chunks from fitting
 	 * together), so we don't bother trying.
 	 */
-<<<<<<< HEAD
 	DEBUG_PRINT(("In big free\n"));
 	struct big_freelist *hdr_ptr = (struct big_freelist *)((char *)ptr - SMALLEST_SUBPAGE_SIZE);
 	//int npages = *hdr_ptr;
@@ -620,14 +546,6 @@ static void big_kfree(void *ptr)
 	struct big_freelist *newfree = hdr_ptr;
 	assert(newfree->npages == hdr_ptr->npages);
 	assert(newfree->signature == SIG_BIG);
-=======
-
-	int *hdr_ptr = (int *)((char *)ptr - SMALLEST_SUBPAGE_SIZE);
-	//int npages = *hdr_ptr;
-
-	struct big_freelist *newfree = (struct big_freelist *) hdr_ptr;
-	assert(newfree->npages == *hdr_ptr);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	newfree->next = bigchunks;
 	bigchunks = newfree;
 }
@@ -655,10 +573,6 @@ mm_malloc(size_t sz)
 	void *result;
 	
 	DEBUG_PRINT(("Entered mm malloc %d bytes\n", sz));
-<<<<<<< HEAD
-=======
-	//pthread_mutex_lock(&malloc_lock);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 
 	if (sz>=LARGEST_SUBPAGE_SIZE) {
 		pthread_mutex_lock(&big_lock);
@@ -668,14 +582,8 @@ mm_malloc(size_t sz)
 		result = subpage_kmalloc(sz);
 	}
 
-<<<<<<< HEAD
 
 	//DEBUG_PRINT(("Return mm malloc %d\n", sz));
-=======
-	//pthread_mutex_unlock(&malloc_lock);
-
-	DEBUG_PRINT(("Return mm malloc %d\n", sz));
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	return result;
 }
 
@@ -689,19 +597,11 @@ mm_free(void *ptr)
 	if (ptr == NULL) {
 		return;
 	} else {
-<<<<<<< HEAD
-=======
-	  //pthread_mutex_lock(&malloc_lock);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	  if (subpage_kfree(ptr)) {
 		  pthread_mutex_lock(&big_lock);
 		  big_kfree(ptr);
 		  pthread_mutex_unlock(&big_lock);
 	  }
-<<<<<<< HEAD
-=======
-	  //pthread_mutex_unlock(&malloc_lock);
->>>>>>> 47651c8c6b73915e591667e525f2794050e0fc43
 	}
 	DEBUG_PRINT(("Return mm free\n"));
 }
