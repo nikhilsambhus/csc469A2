@@ -1,0 +1,229 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BENCHDIR	./Makefile	/^BENCHDIR := benchmarks$/;"	m
+CC	./allocators/Makefile	/^CC = gcc$/;"	m
+CC	./util/Makefile	/^CC = gcc$/;"	m
+CC_DBG_FLAGS	./allocators/Makefile	/^CC_DBG_FLAGS = -c -Wall -fmessage-length=0 -pipe -g -I. -I$(TOPDIR)\/include -D_REENTRANT=1$/;"	m
+CC_DBG_FLAGS	./util/Makefile	/^CC_DBG_FLAGS = -g$/;"	m
+CC_FLAGS	./allocators/Makefile	/^CC_FLAGS = -std=gnu99 -c -Wall -fmessage-length=0 -pipe -O3 -finline-limit=65000 -fkeep-inline-functions -finline-functions -ffast-math -fomit-frame-pointer -DNDEBUG -I. -I$(TOPDIR)\/include -D_REENTRANT=1$/;"	m
+CC_FLAGS	./util/Makefile	/^CC_FLAGS = -O3 -DNDEBUG$/;"	m
+DIRS	./Makefile	/^DIRS := cache-scratch cache-thrash larson threadtest linux-scalability phong$/;"	m
+DSEG_MAX	./include/memlib.h	15;"	d
+DWORD	./benchmarks/larson/larson.c	/^typedef long DWORD;$/;"	t	file:
+FALSE	./benchmarks/larson/larson.c	/^enum { TRUE = 1, FALSE = 0 };$/;"	e	enum:__anon2	file:
+FNV_OFFSET	./benchmarks/phong/phong.c	44;"	d	file:
+FNV_PRIME	./benchmarks/phong/phong.c	43;"	d	file:
+Foo	./benchmarks/threadtest/threadtest.c	/^struct Foo {$/;"	s	file:
+HighPart	./benchmarks/larson/larson.c	/^    LONG  HighPart;$/;"	m	struct:_LARGE_INTEGER::__anon1	file:
+IA	./benchmarks/larson/larson.c	573;"	d	file:
+IA	./benchmarks/larson/larson.c	607;"	d	file:
+IC	./benchmarks/larson/larson.c	574;"	d	file:
+IC	./benchmarks/larson/larson.c	608;"	d	file:
+INCLUDES	./util/Makefile	/^INCLUDES = ..\/include$/;"	m
+INVALID_OFFSET	./allocators/kheap/kheap.c	106;"	d	file:
+LARGEST_SUBPAGE_SIZE	./allocators/kheap/kheap.c	86;"	d	file:
+LARGE_INTEGER	./benchmarks/larson/larson.c	/^} LARGE_INTEGER;$/;"	t	typeref:union:_LARGE_INTEGER	file:
+LONG	./benchmarks/larson/larson.c	/^typedef long LONG;$/;"	t	file:
+LONGLONG	./benchmarks/larson/larson.c	/^typedef long long LONGLONG;$/;"	t	file:
+LPVOID	./benchmarks/larson/larson.c	/^typedef void * LPVOID;$/;"	t	file:
+LRAN2_MAX	./benchmarks/larson/larson.c	572;"	d	file:
+LowPart	./benchmarks/larson/larson.c	/^    DWORD LowPart;$/;"	m	struct:_LARGE_INTEGER::__anon1	file:
+MAX_BLOCKS	./benchmarks/larson/larson.c	83;"	d	file:
+MAX_THREADS	./benchmarks/larson/larson.c	82;"	d	file:
+MAX_THREADS	./benchmarks/linux-scalability/linux-scalability.c	36;"	d	file:
+MKPAB	./allocators/kheap/kheap.c	110;"	d	file:
+Maxsize	./benchmarks/phong/phong.c	/^static size_t		Maxsize = 1024;$/;"	v	file:
+Minsize	./benchmarks/phong/phong.c	/^static size_t		Minsize = 10;$/;"	v	file:
+NSECSPERSEC	./benchmarks/linux-scalability/linux-scalability.c	34;"	d	file:
+NSIZES	./allocators/kheap/kheap.c	82;"	d	file:
+N_ALLOC	./benchmarks/phong/phong.c	20;"	d	file:
+N_THREAD	./benchmarks/phong/phong.c	19;"	d	file:
+Nalloc	./benchmarks/phong/phong.c	/^static int		Nalloc = N_ALLOC;$/;"	v	file:
+Nthread	./benchmarks/phong/phong.c	/^static int		Nthread = N_THREAD;$/;"	v	file:
+NumBlocks	./benchmarks/larson/larson.c	/^  int    NumBlocks ;$/;"	m	struct:thr_data	file:
+PAGE_ALIGN	./util/memlib.c	25;"	d	file:
+PAGE_ALIGN_UP	./util/memlib.c	27;"	d	file:
+PAGE_FRAME	./allocators/kheap/kheap.c	76;"	d	file:
+PAGE_FRAME	./allocators/kheap/kheap.c	78;"	d	file:
+PAGE_SIZE	./allocators/kheap/kheap.c	73;"	d	file:
+PR_BLOCKTYPE	./allocators/kheap/kheap.c	109;"	d	file:
+PR_PAGEADDR	./allocators/kheap/kheap.c	108;"	d	file:
+QuadPart	./benchmarks/larson/larson.c	/^  LONGLONG QuadPart;    \/\/ In Visual C++, a typedef to _ _int64} LARGE_INTEGER;$/;"	m	union:_LARGE_INTEGER	file:
+QueryPerformanceCounter	./benchmarks/larson/larson.c	/^void QueryPerformanceCounter (long * x)$/;"	f
+QueryPerformanceFrequency	./benchmarks/larson/larson.c	/^void QueryPerformanceFrequency(long * x)$/;"	f
+RANDOM	./benchmarks/phong/phong.c	45;"	d	file:
+SLOW	./allocators/kheap/kheap.c	193;"	d	file:
+SLOW	./allocators/kheap/kheap.c	67;"	d	file:
+SLOWER	./allocators/kheap/kheap.c	68;"	d	file:
+SMALLEST_SUBPAGE_SIZE	./allocators/kheap/kheap.c	85;"	d	file:
+Sleep	./benchmarks/larson/larson.c	/^void Sleep (long x) $/;"	f
+TARGET	./benchmarks/cache-scratch/Makefile	/^TARGET = cache-scratch$/;"	m
+TARGET	./benchmarks/cache-thrash/Makefile	/^TARGET = cache-thrash$/;"	m
+TARGET	./benchmarks/larson/Makefile	/^TARGET = larson$/;"	m
+TARGET	./benchmarks/linux-scalability/Makefile	/^TARGET = linux-scalability$/;"	m
+TARGET	./benchmarks/phong/Makefile	/^TARGET = phong$/;"	m
+TARGET	./benchmarks/threadtest/Makefile	/^TARGET = threadtest$/;"	m
+TRUE	./benchmarks/larson/larson.c	/^enum { TRUE = 1, FALSE = 0 };$/;"	e	enum:__anon2	file:
+TotalAllocs	./benchmarks/larson/larson.c	/^int     TotalAllocs=0 ;$/;"	v
+ULONG	./benchmarks/larson/larson.c	/^typedef unsigned long ULONG;$/;"	t	file:
+VoidFunction	./benchmarks/larson/larson.c	/^typedef void * VoidFunction (void *);$/;"	t	file:
+_GNU_SOURCE	./include/mm_thread.h	6;"	d
+_GNU_SOURCE	./util/memlib.c	8;"	d	file:
+_LARGE_INTEGER	./benchmarks/larson/larson.c	/^typedef union _LARGE_INTEGER {$/;"	u	file:
+_LRAN2_H	./benchmarks/larson/larson.c	570;"	d	file:
+_MM_THREAD_H_	./include/mm_thread.h	4;"	d
+_REENTRANT	./benchmarks/larson/larson.c	61;"	d	file:
+_REENTRANT	./benchmarks/threadtest/threadtest.c	30;"	d	file:
+_TIMER_H_	./include/timer.h	2;"	d
+__MALLOC_H_	./include/malloc.h	2;"	d
+__MEMLIB_H_	./include/memlib.h	2;"	d
+_beginthread	./benchmarks/larson/larson.c	/^void _beginthread (VoidFunction x, int unused, void * z)$/;"	f
+_cpu	./benchmarks/cache-scratch/cache-scratch.c	/^  int _cpu;$/;"	m	struct:workerArg	file:
+_cpu	./benchmarks/cache-thrash/cache-thrash.c	/^  int _cpu;$/;"	m	struct:workerArg	file:
+_inline	./benchmarks/larson/larson.c	37;"	d	file:
+_int64	./benchmarks/larson/larson.c	/^typedef long long _int64;$/;"	t	file:
+_iterations	./benchmarks/cache-scratch/cache-scratch.c	/^  int _iterations;$/;"	m	struct:workerArg	file:
+_iterations	./benchmarks/cache-thrash/cache-thrash.c	/^  int _iterations;$/;"	m	struct:workerArg	file:
+_objSize	./benchmarks/cache-scratch/cache-scratch.c	/^  int _objSize;$/;"	m	struct:workerArg	file:
+_objSize	./benchmarks/cache-thrash/cache-thrash.c	/^  int _objSize;$/;"	m	struct:workerArg	file:
+_object	./benchmarks/cache-scratch/cache-scratch.c	/^  char * _object;$/;"	m	struct:workerArg	file:
+_repetitions	./benchmarks/cache-scratch/cache-scratch.c	/^  int _repetitions;$/;"	m	struct:workerArg	file:
+_repetitions	./benchmarks/cache-thrash/cache-thrash.c	/^  int _repetitions;$/;"	m	struct:workerArg	file:
+allocate	./benchmarks/phong/phong.c	/^void* allocate(void* arg)$/;"	f
+allocpageref	./allocators/kheap/kheap.c	/^allocpageref(void)$/;"	f	file:
+array	./benchmarks/larson/larson.c	/^  char * *array ;$/;"	m	struct:thr_data	file:
+asize	./benchmarks/larson/larson.c	/^  int     asize ;$/;"	m	struct:thr_data	file:
+barrier	./benchmarks/linux-scalability/linux-scalability.c	/^pthread_barrier_t barrier;$/;"	v
+big_freelist	./allocators/kheap/kheap.c	/^struct big_freelist {$/;"	s	file:
+big_kfree	./allocators/kheap/kheap.c	/^static void big_kfree(void *ptr)$/;"	f	file:
+big_kmalloc	./allocators/kheap/kheap.c	/^static void *big_kmalloc(int sz)$/;"	f	file:
+bigchunks	./allocators/kheap/kheap.c	/^static struct big_freelist *bigchunks;$/;"	v	typeref:struct:big_freelist	file:
+blkp	./benchmarks/larson/larson.c	/^char *          blkp[MAX_BLOCKS] ;$/;"	v
+blksize	./benchmarks/larson/larson.c	/^  int    *blksize ;$/;"	m	struct:thr_data	file:
+blksize	./benchmarks/larson/larson.c	/^int             blksize[MAX_BLOCKS] ;$/;"	v
+blocktype	./allocators/kheap/kheap.c	/^int blocktype(size_t sz)$/;"	f	file:
+cAllocs	./benchmarks/larson/larson.c	/^  unsigned long    cAllocs ;$/;"	m	struct:thr_data	file:
+cBytesAlloced	./benchmarks/larson/larson.c	/^  unsigned long    cBytesAlloced ;$/;"	m	struct:thr_data	file:
+cChecked	./benchmarks/larson/larson.c	/^int cChecked=0 ;$/;"	v
+cFrees	./benchmarks/larson/larson.c	/^  unsigned long    cFrees ;$/;"	m	struct:thr_data	file:
+cThreads	./benchmarks/larson/larson.c	/^  int    cThreads ;$/;"	m	struct:thr_data	file:
+called	./benchmarks/linux-scalability/ptbarrier.h	/^  int called;$/;"	m	struct:__anon3
+checksubpage	./allocators/kheap/kheap.c	/^checksubpage(struct pageref *pr)$/;"	f	file:
+checksubpage	./allocators/kheap/kheap.c	225;"	d	file:
+checksubpages	./allocators/kheap/kheap.c	/^checksubpages(void)$/;"	f	file:
+checksubpages	./allocators/kheap/kheap.c	246;"	d	file:
+cond	./benchmarks/linux-scalability/ptbarrier.h	/^  pthread_cond_t cond;$/;"	m	struct:__anon3
+dseg_hi	./util/memlib.c	/^char *dseg_lo = NULL, *dseg_hi = NULL;$/;"	v
+dseg_lo	./util/memlib.c	/^char *dseg_lo = NULL, *dseg_hi = NULL;$/;"	v
+dseg_size	./util/memlib.c	/^long dseg_size;  \/* Maximum size of data segment *\/$/;"	v
+email1	./include/malloc.h	/^    char *name1, *email1;$/;"	m	struct:__anon4
+email2	./include/malloc.h	/^    char *name2, *email2;$/;"	m	struct:__anon4
+error	./benchmarks/phong/phong.c	/^int error(char* mesg)$/;"	f
+executionTimes	./benchmarks/linux-scalability/linux-scalability.c	/^double * executionTimes;$/;"	v
+exercise_heap	./benchmarks/larson/larson.c	/^static void * exercise_heap( void *pinput)$/;"	f	file:
+fill_deadbeef	./allocators/kheap/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
+finished	./benchmarks/larson/larson.c	/^  volatile int finished ;$/;"	m	struct:thr_data	file:
+flist	./allocators/kheap/kheap.c	/^	struct freelist *flist;$/;"	m	struct:pageref	typeref:struct:pageref::freelist	file:
+foo	./benchmarks/larson/larson.c	/^  } foo;$/;"	m	union:_LARGE_INTEGER	typeref:struct:_LARGE_INTEGER::__anon1	file:
+freelist	./allocators/kheap/kheap.c	/^struct freelist {$/;"	s	file:
+freepageref	./allocators/kheap/kheap.c	/^freepageref(struct pageref *p)$/;"	f	file:
+fresh_refs	./allocators/kheap/kheap.c	/^static struct pageref *fresh_refs; \/* static global, initially 0 *\/$/;"	v	typeref:struct:pageref	file:
+getNumProcessors	./util/mm_thread.c	/^int getNumProcessors (void)$/;"	f
+getTID	./util/mm_thread.c	/^inline int getTID(void) {$/;"	f
+init_space	./benchmarks/larson/larson.c	/^ULONG           init_space ;$/;"	v
+initialize_pthread_attr	./util/mm_thread.c	/^extern void initialize_pthread_attr(int detachstate, int schedpolicy, int priority, $/;"	f
+iteration_count	./benchmarks/linux-scalability/linux-scalability.c	/^static uint64_t iteration_count = 1000000;$/;"	v	file:
+lran2	./benchmarks/larson/larson.c	/^long lran2(struct lran2_st* d)$/;"	f	file:
+lran2_init	./benchmarks/larson/larson.c	/^lran2_init(struct lran2_st* d, long seed)$/;"	f	file:
+lran2_st	./benchmarks/larson/larson.c	/^struct lran2_st {$/;"	s	file:
+main	./benchmarks/cache-scratch/cache-scratch.c	/^int main (int argc, char * argv[]) {$/;"	f
+main	./benchmarks/cache-thrash/cache-thrash.c	/^int main (int argc, char * argv[]) {$/;"	f
+main	./benchmarks/larson/larson.c	/^int main (int argc, char *argv[])$/;"	f
+main	./benchmarks/linux-scalability/linux-scalability.c	/^main (int argc, char *argv[])$/;"	f
+main	./benchmarks/phong/phong.c	/^int main(int argc, char* argv[])$/;"	f
+main	./benchmarks/threadtest/threadtest.c	/^int main (int argc, char * argv[])$/;"	f
+malloc_lock	./allocators/kheap/kheap.c	/^pthread_mutex_t malloc_lock = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+max_size	./benchmarks/larson/larson.c	/^  int    max_size ;$/;"	m	struct:thr_data	file:
+max_size	./benchmarks/larson/larson.c	/^int             min_size=10, max_size=500 ;$/;"	v
+mem_init	./util/memlib.c	/^int mem_init (void)$/;"	f
+mem_pagesize	./util/memlib.c	/^int mem_pagesize (void)$/;"	f
+mem_sbrk	./util/memlib.c	/^void *mem_sbrk (ptrdiff_t increment)$/;"	f
+mem_usage	./util/memlib.c	/^ptrdiff_t mem_usage (void)$/;"	f
+min_size	./benchmarks/larson/larson.c	/^  int    min_size ;$/;"	m	struct:thr_data	file:
+min_size	./benchmarks/larson/larson.c	/^int             min_size=10, max_size=500 ;$/;"	v
+mm_free	./allocators/a2alloc/a2alloc.c	/^void mm_free(void *ptr)$/;"	f
+mm_free	./allocators/kheap/kheap.c	/^mm_free(void *ptr)$/;"	f
+mm_free	./allocators/libc/libc_wrapper.c	/^void mm_free(void *ptr)$/;"	f
+mm_init	./allocators/a2alloc/a2alloc.c	/^int mm_init(void)$/;"	f
+mm_init	./allocators/kheap/kheap.c	/^int mm_init(void)$/;"	f
+mm_init	./allocators/libc/libc_wrapper.c	/^int mm_init(void)$/;"	f
+mm_malloc	./allocators/a2alloc/a2alloc.c	/^void *mm_malloc(size_t sz)$/;"	f
+mm_malloc	./allocators/kheap/kheap.c	/^mm_malloc(size_t sz)$/;"	f
+mm_malloc	./allocators/libc/libc_wrapper.c	/^void *mm_malloc(size_t sz)$/;"	f
+mutex	./benchmarks/linux-scalability/ptbarrier.h	/^  pthread_mutex_t mutex;$/;"	m	struct:__anon3
+myname	./allocators/kheap/kheap.c	/^name_t myname = {$/;"	v
+name	./include/malloc.h	/^    char *name;$/;"	m	struct:__anon4
+name1	./include/malloc.h	/^    char *name1, *email1;$/;"	m	struct:__anon4
+name2	./include/malloc.h	/^    char *name2, *email2;$/;"	m	struct:__anon4
+name_t	./include/malloc.h	/^} name_t;$/;"	t	typeref:struct:__anon4
+needed	./benchmarks/linux-scalability/ptbarrier.h	/^  int needed;$/;"	m	struct:__anon3
+next	./allocators/kheap/kheap.c	/^	struct big_freelist *next;$/;"	m	struct:big_freelist	typeref:struct:big_freelist::big_freelist	file:
+next	./allocators/kheap/kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
+next	./allocators/kheap/kheap.c	/^	struct pageref *next;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
+nfree	./allocators/kheap/kheap.c	/^	int nfree;$/;"	m	struct:pageref	file:
+niterations	./benchmarks/threadtest/threadtest.c	/^int niterations = 50;	\/\/ Default number of iterations.$/;"	v
+nobjects	./benchmarks/threadtest/threadtest.c	/^int nobjects = 30000;   \/\/ Default number of objects.$/;"	v
+npages	./allocators/kheap/kheap.c	/^	int npages;$/;"	m	struct:big_freelist	file:
+nthreads	./benchmarks/threadtest/threadtest.c	/^int nthreads = 1;	\/\/ Default number of threads.$/;"	v
+numCPU	./benchmarks/larson/larson.c	/^int numCPU;$/;"	v
+numCPU	./benchmarks/linux-scalability/linux-scalability.c	/^static int numCPU = 0;$/;"	v	file:
+numCPU	./benchmarks/phong/phong.c	/^static int              numCPU = 0;$/;"	v	file:
+num_threads	./benchmarks/larson/larson.c	/^int             num_threads ;$/;"	v
+page_size	./util/memlib.c	/^static int page_size;$/;"	v	file:
+pageaddr_and_blocktype	./allocators/kheap/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
+pageref	./allocators/kheap/kheap.c	/^struct pageref {$/;"	s	file:
+pthread_attr_default	./benchmarks/linux-scalability/linux-scalability.c	35;"	d	file:
+pthread_barrier_destroy	./benchmarks/linux-scalability/ptbarrier.h	/^  int pthread_barrier_destroy(pthread_barrier_t *barrier)$/;"	f
+pthread_barrier_init	./benchmarks/linux-scalability/ptbarrier.h	/^  int pthread_barrier_init(pthread_barrier_t *barrier, void * attr, int needed)$/;"	f
+pthread_barrier_t	./benchmarks/linux-scalability/ptbarrier.h	/^} pthread_barrier_t;$/;"	t	typeref:struct:__anon3
+pthread_barrier_t	./benchmarks/linux-scalability/ptbarrier.h	5;"	d
+pthread_barrier_wait	./benchmarks/linux-scalability/ptbarrier.h	/^  int pthread_barrier_wait(pthread_barrier_t *barrier)$/;"	f
+recycled_refs	./allocators/kheap/kheap.c	/^static struct pageref *recycled_refs;$/;"	v	typeref:struct:pageref	file:
+remove_lists	./allocators/kheap/kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
+rgen	./benchmarks/larson/larson.c	/^  struct lran2_st rgen ;$/;"	m	struct:thr_data	typeref:struct:thr_data::lran2_st	file:
+rgen	./benchmarks/larson/larson.c	/^struct lran2_st rgen ;$/;"	v	typeref:struct:lran2_st
+run_test	./benchmarks/linux-scalability/linux-scalability.c	/^run_test (void * arg) {$/;"	f
+runloops	./benchmarks/larson/larson.c	/^void runloops(long sleep_cnt, int num_chunks )$/;"	f
+runthreads	./benchmarks/larson/larson.c	/^void runthreads(long sleep_cnt, int min_threads, int max_threads, int chperthread, int num_rounds)$/;"	f
+seed	./benchmarks/larson/larson.c	/^  int    seed ;$/;"	m	struct:thr_data	file:
+seqlock	./benchmarks/larson/larson.c	/^long            seqlock=0 ;$/;"	v
+setCPU	./util/mm_thread.c	/^void setCPU (int n) {$/;"	f
+size	./benchmarks/linux-scalability/linux-scalability.c	/^static unsigned long size = 512;$/;"	v	file:
+size	./benchmarks/threadtest/threadtest.c	/^int size = 1;$/;"	v
+sizebases	./allocators/kheap/kheap.c	/^static struct pageref *sizebases[NSIZES];$/;"	v	typeref:struct:pageref	file:
+sizes	./allocators/kheap/kheap.c	/^static const size_t sizes[NSIZES] = { 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };$/;"	v	file:
+stopflag	./benchmarks/larson/larson.c	/^volatile int   stopflag=FALSE ;       $/;"	v
+subpage_kfree	./allocators/kheap/kheap.c	/^subpage_kfree(void *ptr)$/;"	f	file:
+subpage_kmalloc	./allocators/kheap/kheap.c	/^subpage_kmalloc(size_t sz)$/;"	f	file:
+thr_data	./benchmarks/larson/larson.c	/^typedef struct thr_data {$/;"	s	file:
+thread_count	./benchmarks/linux-scalability/linux-scalability.c	/^static unsigned int thread_count = 1;$/;"	v	file:
+thread_data	./benchmarks/larson/larson.c	/^} thread_data;$/;"	t	typeref:struct:thr_data	file:
+threadno	./benchmarks/larson/larson.c	/^  int    threadno ;$/;"	m	struct:thr_data	file:
+timespec_diff	./util/timer.c	/^double timespec_diff(struct timespec *start, struct timespec *end) {$/;"	f
+v	./benchmarks/larson/larson.c	/^  long x, y, v[97];$/;"	m	struct:lran2_st	file:
+vaddr_t	./allocators/kheap/kheap.c	/^typedef ptrdiff_t vaddr_t;$/;"	t	file:
+warmup	./benchmarks/larson/larson.c	/^static void warmup(char **blkp, int num_chunks )$/;"	f	file:
+work	./benchmarks/threadtest/threadtest.c	/^int work = 0;		\/\/ Default number of loop iterations.$/;"	v
+worker	./benchmarks/cache-scratch/cache-scratch.c	/^extern void * worker (void * arg)$/;"	f
+worker	./benchmarks/cache-thrash/cache-thrash.c	/^extern void * worker (void * arg)$/;"	f
+worker	./benchmarks/threadtest/threadtest.c	/^extern void * worker (void *arg)$/;"	f
+workerArg	./benchmarks/cache-scratch/cache-scratch.c	/^struct workerArg {$/;"	s	file:
+workerArg	./benchmarks/cache-thrash/cache-thrash.c	/^struct workerArg {$/;"	s	file:
+x	./benchmarks/larson/larson.c	/^  long x, y, v[97];$/;"	m	struct:lran2_st	file:
+x	./benchmarks/threadtest/threadtest.c	/^  int x;$/;"	m	struct:Foo	file:
+y	./benchmarks/larson/larson.c	/^  long x, y, v[97];$/;"	m	struct:lran2_st	file:
+y	./benchmarks/threadtest/threadtest.c	/^  int y;$/;"	m	struct:Foo	file:

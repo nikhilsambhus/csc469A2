@@ -1,0 +1,53 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+INVALID_OFFSET	kheap.c	106;"	d	file:
+LARGEST_SUBPAGE_SIZE	kheap.c	86;"	d	file:
+MKPAB	kheap.c	110;"	d	file:
+NSIZES	kheap.c	82;"	d	file:
+PAGE_FRAME	kheap.c	76;"	d	file:
+PAGE_FRAME	kheap.c	78;"	d	file:
+PAGE_SIZE	kheap.c	73;"	d	file:
+PR_BLOCKTYPE	kheap.c	109;"	d	file:
+PR_PAGEADDR	kheap.c	108;"	d	file:
+SLOW	kheap.c	193;"	d	file:
+SLOW	kheap.c	67;"	d	file:
+SLOWER	kheap.c	68;"	d	file:
+SMALLEST_SUBPAGE_SIZE	kheap.c	85;"	d	file:
+allocpageref	kheap.c	/^allocpageref(void)$/;"	f	file:
+big_freelist	kheap.c	/^struct big_freelist {$/;"	s	file:
+big_kfree	kheap.c	/^static void big_kfree(void *ptr)$/;"	f	file:
+big_kmalloc	kheap.c	/^static void *big_kmalloc(int sz)$/;"	f	file:
+bigchunks	kheap.c	/^static struct big_freelist *bigchunks;$/;"	v	typeref:struct:big_freelist	file:
+blocktype	kheap.c	/^int blocktype(size_t sz)$/;"	f	file:
+checksubpage	kheap.c	/^checksubpage(struct pageref *pr)$/;"	f	file:
+checksubpage	kheap.c	225;"	d	file:
+checksubpages	kheap.c	/^checksubpages(void)$/;"	f	file:
+checksubpages	kheap.c	246;"	d	file:
+fill_deadbeef	kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
+flist	kheap.c	/^	struct freelist *flist;$/;"	m	struct:pageref	typeref:struct:pageref::freelist	file:
+freelist	kheap.c	/^struct freelist {$/;"	s	file:
+freepageref	kheap.c	/^freepageref(struct pageref *p)$/;"	f	file:
+fresh_refs	kheap.c	/^static struct pageref *fresh_refs; \/* static global, initially 0 *\/$/;"	v	typeref:struct:pageref	file:
+malloc_lock	kheap.c	/^pthread_mutex_t malloc_lock = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+mm_free	kheap.c	/^mm_free(void *ptr)$/;"	f
+mm_init	kheap.c	/^int mm_init(void)$/;"	f
+mm_malloc	kheap.c	/^mm_malloc(size_t sz)$/;"	f
+myname	kheap.c	/^name_t myname = {$/;"	v
+next	kheap.c	/^	struct big_freelist *next;$/;"	m	struct:big_freelist	typeref:struct:big_freelist::big_freelist	file:
+next	kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
+next	kheap.c	/^	struct pageref *next;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
+nfree	kheap.c	/^	int nfree;$/;"	m	struct:pageref	file:
+npages	kheap.c	/^	int npages;$/;"	m	struct:big_freelist	file:
+pageaddr_and_blocktype	kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
+pageref	kheap.c	/^struct pageref {$/;"	s	file:
+recycled_refs	kheap.c	/^static struct pageref *recycled_refs;$/;"	v	typeref:struct:pageref	file:
+remove_lists	kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
+sizebases	kheap.c	/^static struct pageref *sizebases[NSIZES];$/;"	v	typeref:struct:pageref	file:
+sizes	kheap.c	/^static const size_t sizes[NSIZES] = { 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };$/;"	v	file:
+subpage_kfree	kheap.c	/^subpage_kfree(void *ptr)$/;"	f	file:
+subpage_kmalloc	kheap.c	/^subpage_kmalloc(size_t sz)$/;"	f	file:
+vaddr_t	kheap.c	/^typedef ptrdiff_t vaddr_t;$/;"	t	file:
