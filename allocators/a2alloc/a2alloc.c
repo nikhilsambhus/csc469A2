@@ -113,8 +113,20 @@ pthread_mutex_t bigalloc_lock = PTHREAD_MUTEX_INITIALIZER;
 # define DEBUG_PRINT(x) do {} while (0)
 #endif
 
+static pthread_t tid_lookup[NUM_HEAPS];
+
 int getheapid() {
-	return (syscall(__NR_gettid) % NUM_HEAPS); 
+	int syshash, i;
+	pthread_t pid = pthread_self();
+	for(i = 0; i < NUM_HEAPS; i++) {
+		if(tid_lookup[i] == pid) {
+			return i;
+		}
+	}
+	syshash = (syscall(__NR_gettid) % NUM_HEAPS); 
+	tid_lookup[syshash] = pid;
+	return syshash;
+	//return (syscall(__NR_gettid) % NUM_HEAPS); 
 }
 
 static
